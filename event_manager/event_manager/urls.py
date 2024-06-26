@@ -18,12 +18,12 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 
-from event_rest.views import EventViewSet
+from event_rest.views import EventViewSet, EventRegistrationCreate
 
-router = DefaultRouter()
-router.register('event_rest', EventViewSet)
 
 urlpatterns = [
-    path('', include(router.urls)),
     path('admin/', admin.site.urls),
+    path('auth/', include('dj_rest_auth.urls')),
+    path('auth/registration/', include('dj_rest_auth.registration.urls')),
+    path('events/', include('event_rest.urls'))
 ]
